@@ -62,6 +62,7 @@ EXA_API_KEY=...               # Web search (exa.ai)
 
 #Optional
 GROQ_KEY_LIST=["key1","key2"] #Fallback LLM for thinking
+INWORLD_API_KEY=.. #change provider to "inworld" tts as well in config.json
 ```
 
 ### 3. Personalize Kiki
