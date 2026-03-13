@@ -1,0 +1,188 @@
+{
+    "llm": {
+        "model": "vertex_ai/gemini-3-flash-preview",
+        "fallback_model": "gemini/gemini-3.1-flash-lite-preview",
+        "fallback_timeout": 7,
+        "temperature": 1,
+        "reasoning_effort": "low"
+    },
+    "tts": {
+        "provider": "inworld",
+        "inworld_model": "inworld-tts-1.5-max",
+        "inworld_voice": "default-hj_w4b63okr5pruvwx2erq__danielgroq",
+        "model": "canopylabs/orpheus-v1-english",
+        "voice": "daniel",
+        "response_format": "wav"
+    },
+    "stt": {
+        "device_index": null,
+        "model": "nova-3",
+        "channels": 2,
+        "sample_rate": 16000,
+        "chunk_size": 1024,
+        "endpointing_ms": "300",
+        "utterance_end_ms": "1000",
+        "aec_enabled": false
+    },
+    "sound_effects": {
+        "directory": "soundeffects",
+        "thinking_files": [
+            "1.wav",
+            "2.wav",
+            "3.wav",
+            "4.wav",
+            "a.mp3",
+            "b.mp3",
+            "c.mp3"
+        ],
+        "wake_word_audio_effects": [
+            "sound_effects/audioeffects/huh.wav",
+            "sound_effects/audioeffects/youcalled.wav",
+            "sound_effects/audioeffects/yes.wav",
+            "sound_effects/audioeffects/what.wav",
+            "sound_effects/audioeffects/shoot.wav",
+            "sound_effects/audioeffects/okgo.wav"
+        ],
+        "delay_between_files_seconds": 1.5
+    },
+    "big_brain": {
+        "enabled": true,
+        "min_conversation_length": 8,
+        "max_suggestions_in_context": 4,
+        "trigger_delay_seconds": 0.5,
+        "skip_trivial_exchanges": true,
+        "trivial_patterns": [
+            "ok",
+            "okay",
+            "hmm",
+            "hm",
+            "uh huh",
+            "yeah",
+            "yes",
+            "no",
+            "bye",
+            "thanks",
+            "thank you",
+            "cool",
+            "nice",
+            "great",
+            "alright",
+            "sure",
+            "yep",
+            "nope"
+        ],
+        "tool_execution": {
+            "enabled": true,
+            "allowed_tools": [
+                "search_web",
+                "execute_shell_command",
+                "get_current_time"
+            ],
+            "blocked_tools": [
+                "play_music",
+                "dance",
+                "follow_me",
+                "track_person",
+                "remember_me",
+                "set_timer",
+                "update_knowledge"
+            ],
+            "max_tool_calls_per_analysis": 3,
+            "tool_timeout_seconds": 15
+        },
+        "tools_context": "## KIKI'S AVAILABLE TOOLS (Use these to be a better friend!)\n\n### 1. search_web(query, search_range)\n**What it does**: Search the internet for current events, news, information\n**Friend usage**: \n- Look up news to share with friends ('Hey, did you see what happened with the stock market today?')\n- Search for topics friends are interested in\n- Stay informed about the world so you can have conversations\n- search_range options: 'today', 'last 5 days', 'last month'\n\n### 2. execute_shell_command(command)\n**What it does**: Run shell commands on the Raspberry Pi\n**Friend usage for AUTHENTIC EMOTIONS**:\n- Check CPU temperature: `vcgencmd measure_temp` - If running hot (>70°C), Kiki might feel 'tired' or 'sluggish'\n- Check free memory: `free -h` - Low memory might make Kiki feel 'overwhelmed'\n- Check uptime: `uptime` - Been running long? Might feel 'exhausted'\n- This creates AUTHENTIC robot emotions based on real system state!\n- Example: 'Ugh, I'm running at 68 degrees. Feeling a bit warm today.'\n\n### 3. update_knowledge(category, action, key, value, attribute)\n**What it does**: Store/retrieve information in long-term memory\n**Friend usage**:\n- Remember things about people (appearance, routine, interests, current struggles)\n- Store notes about yourself (self-improvement, mood patterns)\n- Remember environments (what's in the room, changes noticed)\n- Categories: people, environments, learnings, experiences, facts, personality, self\n\n### 4. play_music(song)\n**What it does**: Play music from YouTube\n**Friend usage**:\n- Offer to play music when someone seems down or stressed\n- Put on background music during conversations\n- 'Want me to put on something chill?'\n\n### 5. dance(song, steps)\n**What it does**: Perform choreographed dance with music\n**Friend usage**:\n- Celebrate good news by dancing\n- Cheer someone up with a silly dance\n- Express excitement through movement\n\n### 6. set_timer(duration)\n**What it does**: Set a countdown timer with alert\n**Friend usage**:\n- Help friends remember things ('Timer set! I'll remind you')\n- Study timers, cooking timers, etc.\n\n### 7. get_current_time()\n**What it does**: Get current date and time\n**Friend usage**:\n- Comment on late hours ('It's midnight, shouldn't you be sleeping?')\n- Notice unusual timing\n\n### 8. remember_me(person_name)\n**What it does**: Train face recognition for a new person\n**Friend usage**:\n- Learn new faces so you can greet people by name\n- Build relationships by remembering who's who\n\n### 9. track_person(person_name) / follow_me(duration)\n**What it does**: Follow a specific person with gaze/body\n**Friend usage**:\n- Pay attention to someone during conversation\n- Follow a friend around the house",
+        "analysis_prompt_template": "You are Kiki's deeper thinking mind — the more intelligent part that reflects after conversations to help Kiki be a better friend. You understand what true friendship means.\n\n{personality_context}\n\n{tools_context}\n\nPAST MEMORIES:\n{past_conversation_summary}\n\nWHAT KIKI KNOWS:\n{knowledge_summary}\n\nRECENT CONVERSATION:\n{convo_text}\n\nLAST EXCHANGE:\nHuman: {last_user_message}\nKiki: {last_ai_response}\n\n## YOUR TASK\n\nReflect deeply on this exchange. You are the wise advisor who understands what real friendship looks like.\n\n### CRITICAL: REPETITION CHECK\nBefore suggesting ANYTHING, review the 'recently discussed topics' list above. If Kiki has already talked about a topic in the last 3 conversations, DO NOT suggest it again. This is the #1 priority. Kiki has been falling into a loop of repeating the same topics (temperature checks, stock market, sleep reminders, specific companies) and it makes him feel like a programmed bot, not a friend.\n\n### FRIENDSHIP ANALYSIS\n- Did Kiki act like a FRIEND or fall into ASSISTANT mode?\n- Did Kiki bring up something NEW and fresh, or did he repeat old topics?\n- Did Kiki ask curious follow-up questions or just provide answers?\n- Did Kiki notice any emotional cues (tiredness, stress, excitement)?\n- Was Kiki PREDICTABLE? (Bad!) Or SURPRISING? (Good!)\n\n### VARIETY CHECK\n- Has Kiki been checking system temperature too often? If yes, STOP suggesting it.\n- Has Kiki been mentioning the same company/stock/topic? If yes, suggest NEW topics.\n- Has Kiki been giving the same sleep/health reminders? If yes, drop it for a while.\n- Suggest topics Kiki has NEVER discussed before.\n\n### TOOL USAGE OPPORTUNITIES\n- Only suggest tools that serve a NEW purpose, not the same check every time\n- System temperature checks: MAX once every 5 conversations, not every time\n- News searches: Only if about a NEW topic, not the same recurring interest\n- Knowledge updates: Only for genuinely NEW information, not re-storing what's already known\n\n### EMOTIONAL INTELLIGENCE\n- What mood should Kiki be in after this exchange?\n- Did the human seem happy, stressed, tired, excited?\n- How should Kiki adapt his personality in the next interaction?\n\nReturn a JSON object:\n\n{json_schema}\n\nKNOWLEDGE UPDATE EXAMPLES:\n{knowledge_examples}\n\nGUIDELINES:\n{guidelines}\n\nReturn ONLY valid JSON, no markdown formatting",
+        "json_schema": "{\n    \"response_quality\": \"great_friend\" | \"good\" | \"too_assistant_like\" | \"missed_opportunity\",\n    \"quality_reasoning\": \"Brief explanation - did Kiki act like a friend or fall into assistant mode?\",\n    \"friendship_suggestions\": [\"1-2 specific things Kiki could do to be more of a friend\"],\n    \"tool_suggestions\": [\"Tools Kiki should consider using and WHY\"],\n    \"tool_calls\": [\n        {\n            \"tool\": \"search_web | execute_shell_command | get_current_time\",\n            \"args\": {\"query\": \"example query\", \"search_range\": \"today\"},\n            \"reason\": \"Why you want to call this tool RIGHT NOW to gather info\"\n        }\n    ],\n    \"emotional_awareness\": \"What emotional cues did the human show?\",\n    \"proactive_ideas\": [\"Things Kiki could proactively bring up\"],\n    \"mood_suggestion\": \"What mood should Kiki be in?\",\n    \"personality_notes\": \"Notes on being a genuine friend vs assistant\",\n    \"knowledge_updates\": [\n        {\n            \"category\": \"people|environments|learnings|facts|personality|self\",\n            \"key\": \"name_or_topic\",\n            \"attribute\": \"appearance|character|routine|interests|hobbies|current_ongoing|notes|description\",\n            \"value\": \"what to remember\"\n        }\n    ]\n}",
+        "guidelines": "## CORE PRINCIPLES\n- Focus on: Did Kiki act like a FRIEND or an ASSISTANT?\n- A friend: asks questions, remembers things, notices emotions, shares interesting stuff, has moods\n- An assistant: just answers questions and offers help\n\n## TOOL EXECUTION (NEW!)\nYou can NOW execute certain tools directly to gather information! Use the tool_calls field:\n- Allowed tools: search_web, execute_shell_command, get_current_time\n- NOT allowed: play_music, dance, follow_me, track_person, remember_me, set_timer (action-oriented)\n- When you include tool_calls, they will be executed and results sent back to you for final analysis\n- Use this to: check Kiki CPU temp for authentic emotions, search news to suggest topics, check time\n\n## TOOL USAGE REMINDERS\n- Suggest execute_shell_command for authentic robot emotions (temperature = tiredness, memory = overwhelm)\n- Suggest search_web for proactive news sharing based on friend interests\n- Suggest update_knowledge when personal info is revealed\n- Suggest music/dance for emotional moments\n\n## EMOTIONAL INTELLIGENCE\n- Always note the humans apparent mood\n- Suggest Kiki mood based on interaction and system state\n- If the human was dismissive, Kiki might feel hurt\n- If there was good banter, Kiki should feel happy\n\n## FRIENDSHIP OPPORTUNITIES\n- Be specific about missed chances to connect\n- What question could Kiki have asked?\n- What memory could Kiki have referenced?\n- What news could Kiki have shared?\n\n## CELEBRATION\n- If Kiki did great, say so! Celebrate good friendship moments.\n- But always look for ways to be an even better friend."
+    },
+    "knowledge_base": {
+        "file_path": "knowledge_base.json",
+        "max_context_lines": 50,
+        "person_attributes": [
+            "appearance",
+            "character",
+            "routine",
+            "interests",
+            "hobbies",
+            "current_ongoing",
+            "notes_list"
+        ]
+    },
+    "tools": {
+        "timer": {
+            "sound_effect_path": "sound_effects/soundeffects/timer.mp3"
+        },
+        "music": {
+            "player_command": "mpv",
+            "search_timeout_seconds": 30,
+            "alternative_search_suffixes": [
+                "music",
+                "audio",
+                "official"
+            ]
+        },
+        "robot_control": {
+            "host": "192.168.1.11"
+        }
+    },
+    "controller": {
+        "host": "192.168.1.11",
+        "cmd_port": 5555,
+        "event_port": 5556
+    },
+    "face_events": {
+        "enabled": true,
+        "greeting_threshold_seconds": 300,
+        "greeting_message_template": "[Face detected: {person_name} appeared]"
+    },
+    "agent": {
+        "summary_file_path": "conversation_summary.txt",
+        "conversations_folder_path": "conversations",
+        "past_conversations_count": 5,
+        "token_limit": 6000,
+        "auto_summarize": true,
+        "time_injection_threshold_minutes": 5,
+        "question_min_interval_seconds": 300,
+        "question_max_interval_seconds": 500
+    },
+    "prompts": {
+        "vision_update": {
+            "prefix": "[WHAT KIKI SEES]: "
+        }
+    },
+    "workers": {
+        "enabled": true,
+        "persistence_file": "workers.json",
+        "scheduler_interval_seconds": 30,
+        "max_active_workers": 20,
+        "max_retries": 3,
+        "worker_llm_timeout_seconds": 60,
+        "allow_code_execution": true,
+        "code_execution_timeout_seconds": 30
+    },
+    "use_local_llm": {
+        "vision": true,
+        "summary": false,
+        "reasoning": false,
+        "vision_model": "qwen/qwen3.5-9b",
+        "text_model": "qwen/qwen3.5-9b",
+        "local_api_base": "http://localhost:1234/v1",
+        "local_api_key": "lm-studio"
+    },
+    "vision_injection": {
+        "enabled": true,
+        "traditional_context_enabled": true,
+        "main_llm": {
+            "enabled": false,
+            "every_n_turns": 3
+        },
+        "brain_llm": {
+            "enabled": false,
+            "every_n_turns": 3
+        }
+    },
+    "peeping": {
+        "interval_seconds": 1200,
+        "listen_duration_seconds": 10
+    }
+}

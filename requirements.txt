@@ -1,0 +1,41 @@
+# =============================================================================
+# Kiki Voice Assistant — Python Dependencies
+# =============================================================================
+# Install with: pip install -r requirements.txt
+# =============================================================================
+
+# --- Core LLM & AI ---
+litellm>=1.0.0
+google-genai>=1.0.0
+groq>=0.4.0
+openai>=1.0.0
+
+# --- Speech-to-Text ---
+deepgram-sdk>=3.0.0
+
+# --- Hotword Detection ---
+pvporcupine>=3.0.0
+pyaudio>=0.2.14
+
+# --- TTS (WebSocket streaming) ---
+websockets>=12.0
+
+# --- Web Search Tool ---
+exa-py>=1.0.0
+
+# --- Vision (camera + screen capture) ---
+opencv-python>=4.8.0
+mss>=9.0.0
+flask>=3.0.0
+
+# --- Robot Control (optional, ZeroMQ) ---
+pyzmq>=25.0.0
+
+# --- Token Counting ---
+tiktoken>=0.5.0
+
+# --- Environment & Config ---
+python-dotenv>=1.0.0
+
+# --- Music Playback (yt-dlp is also needed as a CLI tool) ---
+yt-dlp>=2024.0.0
