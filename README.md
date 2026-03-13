@@ -1,6 +1,6 @@
 # 🤖 Kiki — Your AI Friend
 
-Kiki is an open-source **AI companion** that sees, hears, speaks, remembers, and cares. Unlike voice assistants that wait for commands, Kiki proactively starts conversations, notices when you're stressed, shares interesting news, and remembers your life — like a real friend who happens to have wheels, cameras, and a silicon brain.
+Kiki is an open-source **AI companion** that sees, hears, speaks, remembers, and cares. Unlike voice assistants that wait for commands, Kiki proactively starts conversations, notices when you're stressed, shares interesting news, and remembers your life — like a real friend.
 
 ## 💡 Why Kiki?
 
