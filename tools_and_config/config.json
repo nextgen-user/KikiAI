@@ -7,7 +7,7 @@
         "reasoning_effort": "low"
     },
     "tts": {
-        "provider": "inworld",
+        "provider": "groq",
         "inworld_model": "inworld-tts-1.5-max",
         "inworld_voice": "default-hj_w4b63okr5pruvwx2erq__danielgroq",
         "model": "canopylabs/orpheus-v1-english",
