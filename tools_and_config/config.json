@@ -161,7 +161,7 @@
         "code_execution_timeout_seconds": 30
     },
     "use_local_llm": {
-        "vision": true,
+        "vision": false,
         "summary": false,
         "reasoning": false,
         "vision_model": "qwen/qwen3.5-9b",
@@ -171,14 +171,14 @@
     },
     "vision_injection": {
         "enabled": true,
-        "traditional_context_enabled": true,
+        "traditional_context_enabled": false,
         "main_llm": {
-            "enabled": false,
-            "every_n_turns": 3
+            "enabled": true,
+            "every_n_turns": 1
         },
         "brain_llm": {
-            "enabled": false,
-            "every_n_turns": 3
+            "enabled": true,
+            "every_n_turns": 1
         }
     },
     "peeping": {
